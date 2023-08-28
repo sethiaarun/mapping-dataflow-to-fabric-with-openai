@@ -46,14 +46,14 @@ class OpenAISparkCodeGenerator(SparkCodeGenerator):
             'model': "gpt-4",
             'messages': [{
                 "role": "user",
-                "content": f"Convert Azure mapping data flow code to spark code \n ${script_code.code_lines}"
+                "content": f"Convert Azure mapping data flow code to PySpark code \n ${script_code.code_lines}"
             }],
             'stream': False,
             'temperature': 1,
             'top_p': 1,
             'frequency_penalty': 0,
             'presence_penalty': 0,
-            'max_tokens': 5000
+            'max_tokens': 7134
         }
 
     @classmethod

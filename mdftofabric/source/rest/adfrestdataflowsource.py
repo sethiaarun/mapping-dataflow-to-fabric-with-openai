@@ -34,7 +34,7 @@ class ADFRestGetSource(DataFlowSource):
                     data_flow_name=data_flow_resource.data_flow_name,
                 )
                 response_time = round(time.time() - start_time, 2)
-                util.log_info("Full response received (sec)", time_taken=response_time)
+                util.log_info("ADF REST GET API response received (sec)", time_taken=response_time)
                 if isinstance(response.properties, MappingDataFlow):
                     util.log_info("received dataflow api response")
                     script_lines = response.properties.script_lines

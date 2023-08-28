@@ -18,13 +18,34 @@ Set following environment variables:
 
 ## Get DataFlow Script Lines from API
 
+You need to pass following parameters:
+- source=api
+- rg - resource group name
+- dataFlowName - data flow name
+- factoryName - Azure data factory name
+- lakeHouseId - Existing target Microsoft Fabric lakehouse Id
+- lakeHouseName - Existing target Microsoft Fabric lakehouse name
+- workSpaceId - Existing target Microsoft Fabric workspace Id
+- subscriptionId - subscription id
+
 ```
-python.exe main.py --kwargs source=api rg=<resource group> dataFlowName=<dataflow name> factoryName=<adf name> lakeHouseId=<fabric lakehouse id> lakeHouseName=<fabric lakehouse name> workSpaceId=<fabric workspace id> subscriptionId=<azure subscription id> 
+python.exe main.py --kwargs source=api rg=<resource group> dataFlowName=<dataflow name> factoryName=<adf name> \
+lakeHouseId=<fabric lakehouse id> lakeHouseName=<fabric lakehouse name> workSpaceId=<fabric workspace id> \
+subscriptionId=<azure subscription id> 
 ```
 ## Get DataFlow Script Lines from local file
 
+You need to pass following parameters:
+- source=file
+- dataFlowName - data flow name
+- lakeHouseId - Existing target Microsoft Fabric lakehouse Id
+- lakeHouseName - Existing target Microsoft Fabric lakehouse name
+- workSpaceId - Existing target Microsoft Fabric workspace Id
+
+
 ```
-python.exe main.py --kwargs source=file sourceFile=<dataflow script code file path> dataFlowName=<dataflow name> lakeHouseId=<fabric lakehouse id> lakeHouseName=<fabric lakehouse name> workSpaceId=<fabric workspace id>
+python.exe main.py --kwargs source=file sourceFile=<dataflow script code file path> dataFlowName=<dataflow name>\
+lakeHouseId=<fabric lakehouse id> lakeHouseName=<fabric lakehouse name> workSpaceId=<fabric workspace id>
 ```
 There are two output files will be generated:
 

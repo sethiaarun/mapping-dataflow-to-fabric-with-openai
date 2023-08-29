@@ -8,10 +8,9 @@ We can also pass targeted Fabric resources like workspace ID, lakehouse name, an
 
 **The tool is not tested with all transformations supported by Azure Mapping dataflow.**
 
-
 [OpenAI Privacy](https://openai.com/enterprise-privacy).
 
-[Similar Project - Using Scala Combinator Library](https://github.com/sethiaarun/mapping-data-flow-to-spark)
+:information_desk_person: You can try converting Azure Mapping dataflow using Scala Combinator custom parsers to Fabric Notebook from [mapping-data-flow-to-spark](https://github.com/sethiaarun/mapping-data-flow-to-spark)
 
 # Installation
 

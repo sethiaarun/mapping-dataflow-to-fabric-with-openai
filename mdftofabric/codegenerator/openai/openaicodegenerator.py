@@ -30,10 +30,7 @@ class OpenAISparkCodeGenerator(SparkCodeGenerator):
             response = openai.ChatCompletion.create(**openai_request_args)
             # create variables to collect the stream messages
             util.log_info("processing openai response")
-            if openai_request_args.get('stream'):
-                spark_code.code_lines = self._stream_response_processing(response)
-            else:
-                spark_code.code_lines = self._non_stream_response_processing(response)
+            spark_code.code_lines = self._non_stream_response_processing(response)
             # calculate the time it took to receive the response
             response_time = round(time.time() - start_time, 2)
             util.log_info("Full response received from openai", time_taken=str(response_time))
@@ -53,24 +50,8 @@ class OpenAISparkCodeGenerator(SparkCodeGenerator):
             'top_p': 1,
             'frequency_penalty': 0,
             'presence_penalty': 0,
-            'max_tokens': 7134
+            'max_tokens': 5000
         }
-
-    @classmethod
-    def _stream_response_processing(cls, response) -> list[str]:
-        """
-            response processing when stream is true
-            @param cls class type
-            @param response OpenAI API response in stream format
-        """
-        collected_messages = []
-        for chunk in response:
-            choice = chunk['choices'][0]
-            if 'delta' in choice and 'content' in choice['delta']:
-                chunk_message = choice['delta']
-                content = chunk_message['content']
-                collected_messages.append(content)  # save the message
-        return collected_messages
 
     @classmethod
     def _non_stream_response_processing(cls, response) -> list[str]:

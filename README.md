@@ -1,10 +1,17 @@
 # Introduction
 
-This tool uses OpenAI API to convert Azure Mapping Dataflow code to Microsoft Fabric PySpark code using OpenAI API. 
+This tool uses OpenAI API to convert [Azure Mapping Dataflow](https://learn.microsoft.com/en-us/azure/data-factory/concepts-data-flow-overview) code to (Microsoft Fabric PySpark)[https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook) code using OpenAI API. 
 
-The tool will use ADF get REST API to get dataflow script code or File source and OpenAI to convert script code into PySpark Notebook. 
+The tool will use [ADF get REST API](https://learn.microsoft.com/en-us/rest/api/datafactory/pipelines/get?tabs=HTTP) to get dataflow script code or File source and OpenAI to convert script code into PySpark Notebook. 
 We need to pass a few input parameters based on the source of the Mapping Dataflow. 
 We can also pass targeted Fabric resources like workspace ID, lakehouse name, and lakehouse ID to set these parameters into notebook metadata.
+
+**The tool is not tested with all transformations supported by Azure Mapping dataflow.**
+
+
+[OpenAI Privacy](https://openai.com/enterprise-privacy).
+
+[Similar Project - Using Scala Combinator Library](https://github.com/sethiaarun/mapping-data-flow-to-spark)
 
 # Installation
 

@@ -23,6 +23,8 @@ Set following environment variables:
 - OPENAI_API_KEY - Your openap api key
 - LOG_LEVEL - Optional debug/info
 
+:warning:don't forget to read limitation before you run a large conversion
+
 ## Get DataFlow Script Lines from API
 
 You need to pass following parameters:

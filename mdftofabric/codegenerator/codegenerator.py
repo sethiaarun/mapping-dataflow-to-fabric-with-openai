@@ -4,9 +4,13 @@ from abc import ABC, abstractmethod
 from mdftofabric.datamodel.model import MappingDataFlowScriptCode, SparkCode  # data classes
 
 
+# pylint: disable=too-few-public-methods
 class SparkCodeGenerator(ABC):
     """abstract class for Spark Code Generation"""
 
     @abstractmethod
     def generate_spark_code(self, script_code: MappingDataFlowScriptCode) -> SparkCode:
-        pass
+        """
+        generate spark code from given script code
+        the implementation can be OpenAI, Azure OpenAI, etc.
+        """

@@ -1,5 +1,6 @@
+"""test case constants for fabric pyspark write"""
 # assert value for TestPySparkNotebookWriter.test_write_note_book
-fabric_pyspark_notebook_assert="""
+FABRIC_PYSPARK_NOTEBOOK_ASSERT = """
 {
  "cells": [
   {

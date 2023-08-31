@@ -1,4 +1,5 @@
-fabric_py_spark_metaddata = """
+"""module constants and functions"""
+FABRIC_PY_SPARK_META_DATA = """
 {{
     "language_info": {{
         "name": "python"

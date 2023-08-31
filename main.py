@@ -76,14 +76,17 @@ if __name__ == "__main__":
                         subscription_id=subscription_id,
                         data_flow_name=data_flow_name,
                         factory_name=factory_name,
-                        rg=resource_group
+                        resource_group=resource_group
                     )
-                    # write notebook
-                    file_name = write_to_notebook(spark_code, parsed_arg_dict)
-                    py_spark_file = (MappingDataFlowToFabricNoteBook
-                                     .write_py_spark_file(spark_code=spark_code,
-                                                          data_flow_name=data_flow_name))
-                    util.log_info("PySpark File generated", file_name=py_spark_file)
+                    if len(spark_code.code_lines) > 0:
+                        # write notebook
+                        file_name = write_to_notebook(spark_code, parsed_arg_dict)
+                        py_spark_file = (MappingDataFlowToFabricNoteBook
+                                         .write_py_spark_file(spark_code=spark_code,
+                                                              data_flow_name=data_flow_name))
+                        util.log_info("PySpark File generated", file_name=py_spark_file)
+                    else:
+                        util.log_error("no spark code generated")
                 else:
                     log_missing_arguments(parsed_arg_dict, api_required_arguments())
             elif source in file_source:
@@ -91,20 +94,22 @@ if __name__ == "__main__":
                     # if File source and has valid required arguments
                     data_flow_name = parsed_arg_dict.get('dataFlowName')
                     source_file_path = parsed_arg_dict.get('sourceFile')
-                    spark_code = MappingDataFlowToFabricNoteBook().file_source_generate_spark_code(
-                        source_file_path=source_file_path,
-                        data_flow_name=data_flow_name)
-                    file_name = write_to_notebook(spark_code, parsed_arg_dict)
-                    py_spark_file = (MappingDataFlowToFabricNoteBook
-                                     .write_py_spark_file(spark_code=spark_code,
-                                                          data_flow_name=data_flow_name))
-                    util.log_info("PySpark File generated", file_name=py_spark_file)
+                    spark_code = MappingDataFlowToFabricNoteBook.file_source_generate_spark_code(
+                        source_file_path=source_file_path)
+                    if len(spark_code.code_lines) > 0:
+                        file_name = write_to_notebook(spark_code, parsed_arg_dict)
+                        py_spark_file = (MappingDataFlowToFabricNoteBook
+                                         .write_py_spark_file(spark_code=spark_code,
+                                                              data_flow_name=data_flow_name))
+                        util.log_info("PySpark File generated", file_name=py_spark_file)
+                    else:
+                        util.log_error("no spark code generated")
                 else:
                     log_missing_arguments(parsed_arg_dict, file_required_arguments())
 
         else:
-            util.log_error(f"provide valid source: File/file or API/api")
+            util.log_error("provide valid source: File/file or API/api")
     else:
         log_missing_arguments(parsed_arg_dict, fabric_required_arguments())
 else:
-    util.log_error(f"provide valid source: File/file or API/api")
+    util.log_error("provide valid source: File/file or API/api")

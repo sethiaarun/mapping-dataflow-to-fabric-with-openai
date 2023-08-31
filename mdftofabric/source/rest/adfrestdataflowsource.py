@@ -10,14 +10,15 @@ from mdftofabric.source.dataflowsource import DataFlowSource
 from mdftofabric.util import util  # util function
 
 
+# pylint: disable=too-few-public-methods
 class ADFRestGetSource(DataFlowSource):
     """class to use ADF REST API to get Script Code"""
 
-    def get_script_code(self, data_flow_resource: DataFlowResource) -> MappingDataFlowScriptCode:
+    def get_script_code(self, data_flow_source: DataFlowResource) -> MappingDataFlowScriptCode:
         """
         This is going to invoke ADF dataflow Get API to get
         Mapping dataflow script lines
-        @param data_flow_resource data flow resources
+        @param data_flow_source data flow resources
         """
         script_code = MappingDataFlowScriptCode("")
         try:
@@ -25,13 +26,13 @@ class ADFRestGetSource(DataFlowSource):
             start_time = time.time()
             client = DataFactoryManagementClient(
                 credential=DefaultAzureCredential(),
-                subscription_id=data_flow_resource.subscription_id,
+                subscription_id=data_flow_source.subscription_id,
             )
             try:
                 response = client.data_flows.get(
-                    resource_group_name=data_flow_resource.resource_group,
-                    factory_name=data_flow_resource.factory_name,
-                    data_flow_name=data_flow_resource.data_flow_name,
+                    resource_group_name=data_flow_source.resource_group,
+                    factory_name=data_flow_source.factory_name,
+                    data_flow_name=data_flow_source.data_flow_name,
                 )
                 response_time = round(time.time() - start_time, 2)
                 util.log_info("ADF REST GET API response received (sec)", time_taken=response_time)

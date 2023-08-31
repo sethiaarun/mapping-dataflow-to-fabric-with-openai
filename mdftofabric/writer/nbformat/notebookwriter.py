@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from mdftofabric.datamodel.model import SparkCode, NoteBookMetaData  # data classes
 
 
+# pylint: disable=too-few-public-methods
 class NoteBookWriter(ABC):
     """interface for notebook writing"""
 
@@ -19,4 +20,3 @@ class NoteBookWriter(ABC):
         @param spark_code
         @param file_name
         """
-        pass

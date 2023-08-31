@@ -46,4 +46,4 @@ class FabricNoteBookMetaData(NoteBookMetaData):
     """Fabric Notebook Metadata"""
     workspace_id: str
     lakehouse_id: str
-    lakeHouse_name: str
+    lake_house_name: str

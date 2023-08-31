@@ -3,7 +3,8 @@ import os
 
 from mdftofabric.app.appargkeyvalue import KwargsAction
 from mdftofabric.codegenerator.openai.openaicodegenerator import OpenAISparkCodeGenerator
-from mdftofabric.datamodel.model import DataFlowResource, FileSource, MappingDataFlowScriptCode, SparkCode
+from mdftofabric.datamodel.model import (DataFlowResource, FileSource,
+                                         MappingDataFlowScriptCode, SparkCode)
 from mdftofabric.datamodel.model import FabricNoteBookMetaData
 from mdftofabric.source.file.filedataflowsource import ScriptCodeFileSource
 from mdftofabric.source.rest.adfrestdataflowsource import ADFRestGetSource
@@ -68,19 +69,22 @@ class MappingDataFlowToFabricNoteBook:
             raise KeyError("OpenAI API Key is missing, please set OPENAI_API_KEY")
 
     @staticmethod
-    def rest_source_generate_spark_code(subscription_id: str, rg: str, factory_name: str,
-                                        data_flow_name: str) -> SparkCode:
+    def rest_source_generate_spark_code(subscription_id: str, resource_group: str,
+                                        factory_name: str, data_flow_name: str) -> SparkCode:
         """
         generate spark code for where script code is provided by REST API
         @param subscription_id subscription id
-        @param rg resource group where factory and data flow exists
+        @param resource_group resource group where factory and data flow exists
         @param factory_name data factory name
         @param data_flow_name data flow name
         """
-        # check all require environment variables are present if not this function will throw the exception
+        # check all require environment variables are present
+        # if not this function will throw the exception
         MappingDataFlowToFabricNoteBook._validate_required_env()
-        data_flow_resource = DataFlowResource(resource_group=rg, factory_name=factory_name,
-                                              data_flow_name=data_flow_name, subscription_id=subscription_id)
+        data_flow_resource = DataFlowResource(resource_group=resource_group,
+                                              factory_name=factory_name,
+                                              data_flow_name=data_flow_name,
+                                              subscription_id=subscription_id)
         # get script code using ADF REST GET API
         script_code = ADFRestGetSource().get_script_code(data_flow_resource)
         # get spark code from dataflow script code
@@ -88,13 +92,13 @@ class MappingDataFlowToFabricNoteBook:
         return spark_code
 
     @staticmethod
-    def file_source_generate_spark_code(source_file_path: str, data_flow_name: str) -> SparkCode:
+    def file_source_generate_spark_code(source_file_path: str) -> SparkCode:
         """
         generate spark code where script code is provided by file
         @param source_file_path script code file path
-        @param data_flow_name data flow name , this is used for notebook output file name
         """
-        # check all require environment variables are present if not this function will throw the exception
+        # check all require environment variables are present
+        # if not this function will throw the exception
         MappingDataFlowToFabricNoteBook._validate_required_env()
         file_source = FileSource(file_abs_path=source_file_path)
         # get script code using ADF REST GET API

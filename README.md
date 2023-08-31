@@ -15,7 +15,7 @@ into notebook metadata.
 
 [OpenAI Privacy](https://openai.com/enterprise-privacy).
 
-[Similar Project - Using Scala Combinator Library](https://github.com/sethiaarun/mapping-data-flow-to-spark)
+:information_desk_person: You can try converting Azure Mapping dataflow using Scala Combinator custom parsers to Fabric Notebook from [mapping-data-flow-to-spark](https://github.com/sethiaarun/mapping-data-flow-to-spark)
 
 ## Installation
 
@@ -35,6 +35,8 @@ Set following environment variables:
 - LOG_LEVEL - Optional debug/info, default value from the application is `info`
 - OPENAI_MODEL - [OpenAI model name](https://platform.openai.com/docs/models), default value from the application
   is `gpt-4`
+
+:warning:don't forget to read limitation before you run a large conversion
 
 ## Get DataFlow Script Lines from API
 

@@ -2,7 +2,7 @@
 skinparam linetype polyline
 skinparam linetype ortho
 User -> MdfToFabric : pass required arguments
-MdfToFabric -> MappingDataFlowToFabricNoteBook.rest_source_generate_spark_code : generate spark code
+MdfToFabric -> MappingDataFlowToFabricNoteBook : call function to generate spark code
 MappingDataFlowToFabricNoteBook -> ADFRestGetSource :  get mapping data flow script code using rest
 ADFRestGetSource --> MappingDataFlowToFabricNoteBook : returns MappingDataFlowScriptCode
 MappingDataFlowToFabricNoteBook -> OpenAISparkCodeGenerator : call OpenAI to generate spark code

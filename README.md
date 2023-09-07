@@ -17,6 +17,8 @@ into notebook metadata.
 
 :information_desk_person: You can try converting Azure Mapping dataflow using Scala Combinator custom parsers to Fabric Notebook from [mapping-data-flow-to-spark](https://github.com/sethiaarun/mapping-data-flow-to-spark)
 
+## Design
+![PlantUmlSequeneDiagram.png](plantuml%2Fdiagram%2FPlantUmlSequeneDiagram.png)
 ## Installation
 
 - Python > 3.10.11

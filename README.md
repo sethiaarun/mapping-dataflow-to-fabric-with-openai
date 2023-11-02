@@ -102,7 +102,7 @@ but extremely limited rollout.
 # Future Scope of work
 
 1. Integration with [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai-service-b)
-2. How to use [embeddings](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings) when mapping dataflow script code is > 8192 tokens?
+2. How to extend this when mapping dataflow script code is > 8192 tokens?
 
 # References
 
